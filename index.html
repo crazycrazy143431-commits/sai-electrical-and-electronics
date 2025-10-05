@@ -3,29 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sai Electrical and Electronics</title>
+  <title>Sai Electrical</title>
   <style>
-    body {
+    /* Use CSS variable for real viewport height */
+    html, body {
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #f8f9fa;
-      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
+      width: 100%;
+      overflow: hidden; /* Prevent extra scroll outside iframe */
+      background-color: #f8f9fa;
     }
 
     iframe {
       width: 100%;
-      max-width: 600px;
-      height: 100vh;
+      height: 100%;
       border: none;
     }
+
+    /* Optional: internal scrolling inside iframe content */
+    /* body inside iframe should have: overflow-y: auto; -webkit-overflow-scrolling: touch; */
   </style>
 </head>
 <body>
-  <iframe src="https://script.google.com/macros/s/AKfycbzqMgSGqdQ2iulS1Sifqunc28cwRueg5AwR4nj8qgl8ExfNIjsVVe9qzlOeUYGQLoYC/exec"
-     allow="geolocation"></iframe>
+  <!-- Embed Google Apps Script web app -->
+  <iframe 
+    src="https://script.google.com/macros/s/AKfycbzqMgSGqdQ2iulS1Sifqunc28cwRueg5AwR4nj8qgl8ExfNIjsVVe9qzlOeUYGQLoYC/exec" 
+    allow="geolocation"
+  ></iframe>
+
+  <script>
+    // Calculate actual viewport height for mobile
+    function setViewportHeight() {
+      const vh = window.innerHeight * 0.01; // 1% of real viewport height
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    window.addEventListener('load', setViewportHeight);
+    window.addEventListener('resize', setViewportHeight);
+  </script>
 </body>
 </html>
-
