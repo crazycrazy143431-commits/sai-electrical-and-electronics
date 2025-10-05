@@ -4,14 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sai Electrical</title>
+
   <style>
-    /* Use CSS variable for real viewport height */
+    /* Dynamic viewport height variable for mobile */
     html, body {
       margin: 0;
       padding: 0;
       height: calc(var(--vh, 1vh) * 100);
       width: 100%;
-      overflow: hidden; /* Prevent extra scroll outside iframe */
+      overflow: auto; /* allow scroll for pull-to-refresh */
+      -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
       background-color: #f8f9fa;
     }
 
@@ -20,13 +22,10 @@
       height: 100%;
       border: none;
     }
-
-    /* Optional: internal scrolling inside iframe content */
-    /* body inside iframe should have: overflow-y: auto; -webkit-overflow-scrolling: touch; */
   </style>
 </head>
 <body>
-  <!-- Embed Google Apps Script web app -->
+  <!-- Google Apps Script web app -->
   <iframe 
     src="https://script.google.com/macros/s/AKfycbzqMgSGqdQ2iulS1Sifqunc28cwRueg5AwR4nj8qgl8ExfNIjsVVe9qzlOeUYGQLoYC/exec" 
     allow="geolocation"
