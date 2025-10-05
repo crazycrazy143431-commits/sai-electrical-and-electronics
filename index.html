@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sai Electrical</title>
-
+  <!-- Favicon for browser tab -->
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" type="image/png">
   <style>
     /* Dynamic viewport height variable for mobile */
     html, body {
@@ -12,7 +13,8 @@
       padding: 0;
       height: calc(var(--vh, 1vh) * 100);
       width: 100%;
-      overflow: hidden;
+      overflow: auto; /* allow scroll for pull-to-refresh */
+      -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
       background-color: #f8f9fa;
     }
 
@@ -24,24 +26,16 @@
   </style>
 </head>
 <body>
+  <!-- Google Apps Script web app -->
+  <iframe 
+    src="https://script.google.com/macros/s/AKfycbzqMgSGqdQ2iulS1Sifqunc28cwRueg5AwR4nj8qgl8ExfNIjsVVe9qzlOeUYGQLoYC/exec" 
+    allow="geolocation"
+  ></iframe>
+
   <script>
-    // Detect mobile device
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-
-    if (isMobile) {
-      // Redirect mobile users directly to Google Apps Script web app
-      window.location.href = "https://script.google.com/macros/s/AKfycbzqMgSGqdQ2iulS1Sifqunc28cwRueg5AwR4nj8qgl8ExfNIjsVVe9qzlOeUYGQLoYC/exec";
-    } else {
-      // Desktop users: insert full-screen iframe
-      const iframe = document.createElement('iframe');
-      iframe.src = "https://script.google.com/macros/s/AKfycbzqMgSGqdQ2iulS1Sifqunc28cwRueg5AwR4nj8qgl8ExfNIjsVVe9qzlOeUYGQLoYC/exec";
-      iframe.allow = "geolocation";
-      document.body.appendChild(iframe);
-    }
-
     // Calculate actual viewport height for mobile
     function setViewportHeight() {
-      const vh = window.innerHeight * 0.01;
+      const vh = window.innerHeight * 0.01; // 1% of real viewport height
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
 
